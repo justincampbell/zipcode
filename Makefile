@@ -6,7 +6,6 @@ test:
 	go test -coverprofile=$(COVERAGE_FILE)
 
 dependencies:
-	go get -t
 	go get golang.org/x/tools/cmd/cover
 
 coverage: test

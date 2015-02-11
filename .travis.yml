@@ -2,10 +2,8 @@ language: go
 go:
   - 1.4
   - tip
-before_install:
+before_script:
   - go generate
-install:
-  - go get -t
 matrix:
   allow_failures:
     - go: tip

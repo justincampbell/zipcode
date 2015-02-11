@@ -1,18 +1,27 @@
 package zipcode
 
-import (
-	"errors"
-	"testing"
+import "testing"
 
-	"github.com/bmizerany/assert"
-)
+func Test_Lookup_zeroes(t *testing.T) {
+	coord, err := Lookup("00000")
 
-func Test_Lookup(t *testing.T) {
-	zeroes, err := Lookup("00000")
-	assert.Equal(t, Coordinates{lat: "", long: ""}, zeroes)
-	assert.Equal(t, errors.New("nope"), err)
+	if coord != (Coordinates{lat: "", long: ""}) {
+		t.Fatalf("coord: %#v", coord)
+	}
 
-	cherry_hill, err := Lookup("08003")
-	assert.Equal(t, Coordinates{lat: "39.882703", long: "-74.972036"}, cherry_hill)
-	assert.Equal(t, nil, err)
+	if err == nil {
+		t.Fatal("should be err")
+	}
+}
+
+func Test_Lookup_cherry_hill(t *testing.T) {
+	coord, err := Lookup("08003")
+
+	if coord != (Coordinates{lat: "39.882703", long: "-74.972036"}) {
+		t.Fatalf("coord: %#v", coord)
+	}
+
+	if err != nil {
+		t.Fatalf("err: %#v", err)
+	}
 }
