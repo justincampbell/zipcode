@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	contents := []byte("package zipcode; var zipcodes = map[ZipCode]Coordinates{")
+	contents := []byte("package zipcode; var zipcodes = map[string]Coordinates{")
 
 	sourceData, err := os.Open("../Gaz_zcta_national.txt")
 	if err != nil {
