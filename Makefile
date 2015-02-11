@@ -11,6 +11,9 @@ dependencies:
 coverage: test
 	go tool cover -html=$(COVERAGE_FILE)
 
+clean:
+	rm -f *.zip db.go
+
 db.go: Gaz_zcta_national.txt
 	go generate gen/*.go
 
