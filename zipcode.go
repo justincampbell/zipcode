@@ -24,7 +24,7 @@ func (coord *Coordinate) String() string {
 func Lookup(zip string) (coord Coordinate, err error) {
 	coord = zipcodes[zip]
 	if coord.isEmpty() {
-		err = errors.New("nope")
+		err = errors.New(fmt.Sprintf("Could not find ZIP Code %s", zip))
 	}
 	return
 }
