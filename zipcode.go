@@ -11,9 +11,13 @@ type Coordinates struct {
 
 type ZipCode string
 
+func (coord *Coordinates) isEmpty() bool {
+	return coord.lat == "" && coord.long == ""
+}
+
 func Lookup(zip ZipCode) (coord Coordinates, err error) {
 	coord = zipcodes[zip]
-	if coord.lat == "" && coord.long == "" {
+	if coord.isEmpty() {
 		err = errors.New("nope")
 	}
 	return

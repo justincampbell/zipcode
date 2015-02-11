@@ -5,7 +5,7 @@ import "testing"
 func Test_Lookup_zeroes(t *testing.T) {
 	coord, err := Lookup("00000")
 
-	if coord != (Coordinates{lat: "", long: ""}) {
+	if !coord.isEmpty() {
 		t.Fatalf("coord: %#v", coord)
 	}
 
