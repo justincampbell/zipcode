@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	contents := []byte("package zipcode; var zipcodes = map[string]Coordinates{")
+	contents := []byte("package zipcode; var zipcodes = map[string]Coordinate{")
 
 	sourceData, err := os.Open("../Gaz_zcta_national.txt")
 	if err != nil {
@@ -33,7 +33,7 @@ func main() {
 			continue
 		}
 
-		line := fmt.Sprintf("\n\"%s\": Coordinates{lat: \"%s\", long: \"%s\"},", zip, lat, long)
+		line := fmt.Sprintf("\n\"%s\": Coordinate{lat: \"%s\", long: \"%s\"},", zip, lat, long)
 
 		contents = append(contents, line...)
 	}
