@@ -1,6 +1,9 @@
 package zipcode
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type Coordinate struct {
 	lat  string
@@ -9,6 +12,13 @@ type Coordinate struct {
 
 func (coord *Coordinate) isEmpty() bool {
 	return coord.lat == "" && coord.long == ""
+}
+
+func (coord *Coordinate) String() string {
+	if coord.isEmpty() {
+		return ""
+	}
+	return fmt.Sprintf("%s,%s", coord.lat, coord.long)
 }
 
 func Lookup(zip string) (coord Coordinate, err error) {

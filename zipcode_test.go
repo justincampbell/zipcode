@@ -9,6 +9,10 @@ func Test_Lookup_zeroes(t *testing.T) {
 		t.Fatalf("coord: %#v", coord)
 	}
 
+	if coord.String() != "" {
+		t.Fatalf("coord.String(): %#v", coord.String())
+	}
+
 	if err == nil {
 		t.Fatal("should be err")
 	}
@@ -19,6 +23,10 @@ func Test_Lookup_cherry_hill(t *testing.T) {
 
 	if coord != (Coordinate{lat: "39.882703", long: "-74.972036"}) {
 		t.Fatalf("coord: %#v", coord)
+	}
+
+	if coord.String() != "39.882703,-74.972036" {
+		t.Fatalf("coord.String(): %#v", coord.String())
 	}
 
 	if err != nil {
