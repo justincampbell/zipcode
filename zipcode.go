@@ -1,7 +1,6 @@
 package zipcode
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -27,7 +26,7 @@ func Lookup(zip string) (coord Coordinate, err error) {
 	index, _ := strconv.Atoi(zip)
 	el := zipcodes[index]
 	if el == "" {
-		err = errors.New(fmt.Sprintf("Could not find ZIP Code %s", zip))
+		err = fmt.Errorf("Could not find ZIP Code %s", zip)
 		return
 	}
 	parts := strings.Split(el, ",")
