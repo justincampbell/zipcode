@@ -21,7 +21,7 @@ func Test_Lookup_zeroes(t *testing.T) {
 func Test_Lookup_cherry_hill(t *testing.T) {
 	coord, err := Lookup("08003")
 
-	if coord != (Coordinate{lat: "39.882703", long: "-74.972036"}) {
+	if coord != (Coordinate{Lat: "39.882703", Long: "-74.972036"}) {
 		t.Fatalf("coord: %#v", coord)
 	}
 

@@ -8,19 +8,19 @@ import (
 )
 
 type Coordinate struct {
-	lat  string
-	long string
+	Lat  string
+	Long string
 }
 
 func (coord *Coordinate) isEmpty() bool {
-	return coord.lat == "" && coord.long == ""
+	return coord.Lat == "" && coord.Long == ""
 }
 
 func (coord *Coordinate) String() string {
 	if coord.isEmpty() {
 		return ""
 	}
-	return fmt.Sprintf("%s,%s", coord.lat, coord.long)
+	return fmt.Sprintf("%s,%s", coord.Lat, coord.Long)
 }
 
 func Lookup(zip string) (coord Coordinate, err error) {
@@ -31,6 +31,6 @@ func Lookup(zip string) (coord Coordinate, err error) {
 		return
 	}
 	parts := strings.Split(el, ",")
-	coord = Coordinate{lat: parts[0], long: parts[1]}
+	coord = Coordinate{Lat: parts[0], Long: parts[1]}
 	return
 }
