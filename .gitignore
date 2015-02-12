@@ -1,3 +1,3 @@
 *.zip
+Gaz_*.txt
 coverage.out
-db.go
