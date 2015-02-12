@@ -9,12 +9,11 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func main() {
-	contents := []byte("package zipcode; var zipcodes = map[string]Coordinate{")
-
 	sourceData, err := os.Open("../Gaz_zcta_national.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -25,19 +24,25 @@ func main() {
 	scanner := bufio.NewScanner(reader)
 	scanner.Split(bufio.ScanLines)
 
+	arr := [100000]string{}
+
 	for scanner.Scan() {
 		fields := strings.Fields(scanner.Text())
 		zip, lat, long := fields[0], fields[7], fields[8]
 
-		if zip == "GEOID" {
-			continue
+		index, err := strconv.Atoi(zip)
+
+		if err == nil {
+			str := fmt.Sprintf("%s,%s", lat, long)
+			arr[index] = str
 		}
-
-		line := fmt.Sprintf("\n\"%s\": Coordinate{lat: \"%s\", long: \"%s\"},", zip, lat, long)
-
-		contents = append(contents, line...)
 	}
 
+	contents := []byte("package zipcode; var zipcodes = [100000]string{\n")
+	for _, el := range arr {
+		line := fmt.Sprintf("\"%s\",\n", el)
+		contents = append(contents, line...)
+	}
 	contents = append(contents, "}"...)
 
 	err = ioutil.WriteFile("../db.go", contents, 0644)

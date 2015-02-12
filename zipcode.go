@@ -3,6 +3,8 @@ package zipcode
 import (
 	"errors"
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 type Coordinate struct {
@@ -22,9 +24,13 @@ func (coord *Coordinate) String() string {
 }
 
 func Lookup(zip string) (coord Coordinate, err error) {
-	coord = zipcodes[zip]
-	if coord.isEmpty() {
+	index, _ := strconv.Atoi(zip)
+	el := zipcodes[index]
+	if el == "" {
 		err = errors.New(fmt.Sprintf("Could not find ZIP Code %s", zip))
+		return
 	}
+	parts := strings.Split(el, ",")
+	coord = Coordinate{lat: parts[0], long: parts[1]}
 	return
 }
